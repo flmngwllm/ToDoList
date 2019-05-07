@@ -9,7 +9,7 @@
             xmlns:fx="http://javafx.com/fxml">
 <left>
     <ListView>
-        
+
     </ListView>
 </left>
 </BorderPane>
