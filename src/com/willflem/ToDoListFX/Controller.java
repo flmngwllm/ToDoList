@@ -44,5 +44,12 @@ public class Controller {
 
     }
 
+    //gets the selected item
+    @FXML
+    public void handleClickListView(){
+        ToDoItem item = (ToDoItem) toDoListView.getSelectionModel().getSelectedItem();
+        System.out.println("The selected item is " + item);
+    }
+
 
 }
