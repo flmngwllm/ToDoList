@@ -4,6 +4,7 @@ import com.willflem.ToDoListFX.datamodel.ToDoItem;
 
 import java.time.LocalDate;
 import java.time.Month;
+import java.util.ArrayList;
 import java.util.List;
 
 public class Controller {
@@ -21,5 +22,14 @@ public class Controller {
                 LocalDate.of(2019, Month.MAY, 7));
         ToDoItem item5 = new ToDoItem("Clean up", "Clean apartment",
                 LocalDate.of(2019, Month.MAY, 13));
+
+        //add array of items
+        toDoItems = new ArrayList<ToDoItem>();
+        toDoItems.add(item1);
+        toDoItems.add(item2);
+        toDoItems.add(item3);
+        toDoItems.add(item4);
+        toDoItems.add(item5);
+
     }
 }
