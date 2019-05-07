@@ -1,6 +1,9 @@
 package com.willflem.ToDoListFX;
 
 import com.willflem.ToDoListFX.datamodel.ToDoItem;
+import javafx.fxml.FXML;
+import javafx.scene.control.ListView;
+import javafx.scene.control.SelectionMode;
 
 import java.time.LocalDate;
 import java.time.Month;
@@ -10,6 +13,9 @@ import java.util.List;
 public class Controller {
 
     private List<ToDoItem> toDoItems;
+
+    @FXML
+    private ListView toDoListView;
 
     public void initialize() {
         ToDoItem item1 = new ToDoItem("Mail birdthday card", "Buy a birthday card for Mom",
@@ -31,5 +37,12 @@ public class Controller {
         toDoItems.add(item4);
         toDoItems.add(item5);
 
+        //populate the listview with the items created
+        toDoListView.getItems().setAll(toDoItems);
+        //select one item at a time
+        toDoListView.getSelectionModel().setSelectionMode(SelectionMode.SINGLE);
+
     }
+
+
 }
