@@ -1,6 +1,8 @@
 package com.willflem.ToDoListFX;
 
 import com.willflem.ToDoListFX.datamodel.ToDoItem;
+import javafx.beans.value.ChangeListener;
+import javafx.beans.value.ObservableValue;
 import javafx.fxml.FXML;
 import javafx.scene.control.Label;
 import javafx.scene.control.ListView;
@@ -43,10 +45,22 @@ public class Controller {
         toDoItems.add(item4);
         toDoItems.add(item5);
 
+        toDoListView.getSelectionModel().selectedItemProperty().addListener(new ChangeListener<ToDoItem>() {
+            @Override
+            public void changed(ObservableValue<? extends ToDoItem> observableValue, ToDoItem oldValue, ToDoItem newValue) {
+                if(newValue != null){
+                    ToDoItem item = toDoListView.getSelectionModel().getSelectedItem();
+                    itemDetailsTextArea.setText(item.getDetails());
+                }
+            }
+        });
+
         //populate the listview with the items created
         toDoListView.getItems().setAll(toDoItems);
         //select one item at a time
         toDoListView.getSelectionModel().setSelectionMode(SelectionMode.SINGLE);
+        //selects the first item
+        toDoListView.getSelectionModel().selectFirst();
 
     }
 
