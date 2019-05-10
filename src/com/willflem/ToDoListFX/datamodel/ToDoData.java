@@ -37,9 +37,10 @@ public class ToDoData {
         this.toDoItems = toDoItems;
     }
 
-    public  void loadToDoItems() throws IOException {
-
+    public void loadToDoItems() throws IOException {
+//used in combination with the setAll in controller
         toDoItems = FXCollections.observableArrayList();
+        // get the path to get the file to load
         Path path = Paths.get(filename);
         BufferedReader br = Files.newBufferedReader(path);
 
@@ -69,7 +70,7 @@ public class ToDoData {
         Path path = Paths.get(filename);
         BufferedWriter bw = Files.newBufferedWriter(path);
         try{
-            Iterator<ToDoItem> iter= toDoItems.iterator();
+            Iterator<ToDoItem> iter = toDoItems.iterator();
             while (iter.hasNext()){
                 ToDoItem item = iter.next();
                 bw.write(String.format("%s\t%s\t%s",

@@ -1,5 +1,6 @@
 package com.willflem.ToDoListFX;
 
+import com.willflem.ToDoListFX.datamodel.ToDoData;
 import com.willflem.ToDoListFX.datamodel.ToDoItem;
 import javafx.beans.value.ChangeListener;
 import javafx.beans.value.ObservableValue;
@@ -45,6 +46,9 @@ public class Controller {
         toDoItems.add(item3);
         toDoItems.add(item4);
         toDoItems.add(item5);
+
+        //create file
+        ToDoData.getInstance().setToDoItems(toDoItems);
 
         toDoListView.getSelectionModel().selectedItemProperty().addListener(new ChangeListener<ToDoItem>() {
             @Override
