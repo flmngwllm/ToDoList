@@ -33,6 +33,10 @@ public class ToDoData {
         return toDoItems;
     }
 
+    public void addToDoItem(ToDoItem item){
+        toDoItems.add(item);
+    }
+
 //    public void setToDoItems(List<ToDoItem> toDoItems) {
 //        this.toDoItems = toDoItems;
 //    }
@@ -47,19 +51,20 @@ public class ToDoData {
         String input;
 
         try{
-            while ( (input = br.readLine()) != null){
+            while ((input = br.readLine()) != null) {
                 String[] itemPieces = input.split("\t");
 
                 String shortDescription = itemPieces[0];
-                String details =  itemPieces[1];
+                String details = itemPieces[1];
                 String dateString = itemPieces[2];
 
-                LocalDate date =  LocalDate.parse(dateString, formatter);
+                LocalDate date = LocalDate.parse(dateString, formatter);
                 ToDoItem toDoItem = new ToDoItem(shortDescription, details, date);
                 toDoItems.add(toDoItem);
             }
-        }finally {
-            if(br !=null){
+
+        } finally {
+            if(br != null){
                br.close();
             }
         }
@@ -75,8 +80,8 @@ public class ToDoData {
                 ToDoItem item = iter.next();
                 bw.write(String.format("%s\t%s\t%s",
                         item.getShortDescription(),
-                        item.getDeadline().format(formatter),
-                        item.getDetails()));
+                        item.getDetails(),
+                        item.getDeadline().format(formatter)));
                 bw.newLine();
             }
 
@@ -86,5 +91,7 @@ public class ToDoData {
             }
         }
     }
+
+
 
 }

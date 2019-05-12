@@ -38,7 +38,7 @@ public class Main extends Application {
 
     //loads items from text file we created
     @Override
-    public void init() throws Exception {
+    public void init() throws IOException {
         try {
             //How we access the singleton
             ToDoData.getInstance().loadToDoItems();

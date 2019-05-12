@@ -34,7 +34,7 @@ public class Controller {
     public void initialize() {
         toDoListView.getSelectionModel().selectedItemProperty().addListener(new ChangeListener<ToDoItem>() {
             @Override
-            public void changed(ObservableValue<? extends ToDoItem> observableValue, ToDoItem oldValue, ToDoItem newValue) {
+            public void changed(ObservableValue<? extends ToDoItem> observable, ToDoItem oldValue, ToDoItem newValue) {
                 if(newValue != null){
                     ToDoItem item = toDoListView.getSelectionModel().getSelectedItem();
                     itemDetailsTextArea.setText(item.getDetails());
@@ -59,10 +59,12 @@ public class Controller {
         // create a new instance of dialog
         Dialog<ButtonType> dialog = new Dialog<>();
         dialog.initOwner(mainBorderPane.getScene().getWindow());
+        FXMLLoader fxmlLoader = new FXMLLoader();
+        fxmlLoader.setLocation(getClass().getResource("todoItemDialog.fxml"));
         // catch the IOexception
         try{
-            Parent root = FXMLLoader.load(getClass().getResource("todoItemDialog.fxml"));
-            dialog.getDialogPane().setContent(root);
+            //get controller from fxml loader instance
+            dialog.getDialogPane().setContent(fxmlLoader.load());
 
         }catch(IOException e){
             System.out.println("Couldnt load the dialog");
@@ -72,10 +74,14 @@ public class Controller {
 
         dialog.getDialogPane().getButtonTypes().add(ButtonType.OK);
         dialog.getDialogPane().getButtonTypes().add(ButtonType.CANCEL);
+
         Optional<ButtonType> result = dialog.showAndWait();
 
         if(result.isPresent() && result.get() == ButtonType.OK){
+            DialogController controller = fxmlLoader.getController();
+            controller.processResults();
             System.out.println("Ok pressed");
+
         } else {
             System.out.println("Cancel pressed");
         }
