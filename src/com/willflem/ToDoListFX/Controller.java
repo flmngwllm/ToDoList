@@ -16,6 +16,7 @@ import java.time.Month;
 import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Optional;
 
 public class Controller {
 
@@ -62,11 +63,21 @@ public class Controller {
         try{
             Parent root = FXMLLoader.load(getClass().getResource("todoItemDialog.fxml"));
             dialog.getDialogPane().setContent(root);
-            
+
         }catch(IOException e){
             System.out.println("Couldnt load the dialog");
             e.printStackTrace();
             return;
+        }
+
+        dialog.getDialogPane().getButtonTypes().add(ButtonType.OK);
+        dialog.getDialogPane().getButtonTypes().add(ButtonType.CANCEL);
+        Optional<ButtonType> result = dialog.showAndWait();
+
+        if(result.isPresent() && result.get() == ButtonType.OK){
+            System.out.println("Ok pressed");
+        } else {
+            System.out.println("Cancel pressed");
         }
     }
 
