@@ -35,4 +35,16 @@ public class Main extends Application {
             System.out.println(e.getMessage());
         }
     }
+
+    //loads items from text file we created
+    @Override
+    public void init() throws Exception {
+        try {
+            //How we access the singleton
+            ToDoData.getInstance().loadToDoItems();
+
+        } catch (IOException e) {
+            System.out.println(e.getMessage());
+        }
+    }
 }
