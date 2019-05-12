@@ -5,11 +5,12 @@ import com.willflem.ToDoListFX.datamodel.ToDoItem;
 import javafx.beans.value.ChangeListener;
 import javafx.beans.value.ObservableValue;
 import javafx.fxml.FXML;
-import javafx.scene.control.Label;
-import javafx.scene.control.ListView;
-import javafx.scene.control.SelectionMode;
-import javafx.scene.control.TextArea;
+import javafx.fxml.FXMLLoader;
+import javafx.scene.Parent;
+import javafx.scene.control.*;
+import javafx.scene.layout.BorderPane;
 
+import java.io.IOException;
 import java.time.LocalDate;
 import java.time.Month;
 import java.time.format.DateTimeFormatter;
@@ -26,30 +27,10 @@ public class Controller {
     private TextArea itemDetailsTextArea;
     @FXML
     private Label deadlineLabel;
+    @FXML
+    private BorderPane mainBorderPane;
 
     public void initialize() {
-//        ToDoItem item1 = new ToDoItem("Mail birdthday card", "Buy a birthday card for Mom",
-//                LocalDate.of(2019, Month.MAY, 7));
-//        ToDoItem item2 = new ToDoItem("Study Java Databases", " Finish JavaFX with SQL databases",
-//                LocalDate.of(2019, Month.MAY, 8));
-//        ToDoItem item3 = new ToDoItem("Start React Course", "Start on course Kevin gave you",
-//                LocalDate.of(2019, Month.MAY, 10));
-//        ToDoItem item4 = new ToDoItem("Email Felicia", "Email Felicia information",
-//                LocalDate.of(2019, Month.MAY, 7));
-//        ToDoItem item5 = new ToDoItem("Clean up", "Clean apartment",
-//                LocalDate.of(2019, Month.MAY, 13));
-//
-//        //add array of items
-//        toDoItems = new ArrayList<ToDoItem>();
-//        toDoItems.add(item1);
-//        toDoItems.add(item2);
-//        toDoItems.add(item3);
-//        toDoItems.add(item4);
-//        toDoItems.add(item5);
-//
-//        //create file
-//        ToDoData.getInstance().setToDoItems(toDoItems);
-
         toDoListView.getSelectionModel().selectedItemProperty().addListener(new ChangeListener<ToDoItem>() {
             @Override
             public void changed(ObservableValue<? extends ToDoItem> observableValue, ToDoItem oldValue, ToDoItem newValue) {
@@ -70,6 +51,23 @@ public class Controller {
         //selects the first item
         toDoListView.getSelectionModel().selectFirst();
 
+    }
+
+    @FXML
+    public void showNewItemDialog(){
+        // create a new instance of dialog
+        Dialog<ButtonType> dialog = new Dialog<>();
+        dialog.initOwner(mainBorderPane.getScene().getWindow());
+        // catch the IOexception
+        try{
+            Parent root = FXMLLoader.load(getClass().getResource("todoItemDialog.fxml"));
+            dialog.getDialogPane().setContent(root);
+            
+        }catch(IOException e){
+            System.out.println("Couldnt load the dialog");
+            e.printStackTrace();
+            return;
+        }
     }
 
     //gets the selected item
