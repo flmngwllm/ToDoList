@@ -64,7 +64,7 @@ public class Controller {
         });
 
         //populate the listview with the items created
-        toDoListView.getItems().setAll(toDoItems);
+        toDoListView.getItems().setAll(ToDoData.getInstance().getToDoItems());
         //select one item at a time
         toDoListView.getSelectionModel().setSelectionMode(SelectionMode.SINGLE);
         //selects the first item

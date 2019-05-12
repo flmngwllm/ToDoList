@@ -33,9 +33,9 @@ public class ToDoData {
         return toDoItems;
     }
 
-    public void setToDoItems(List<ToDoItem> toDoItems) {
-        this.toDoItems = toDoItems;
-    }
+//    public void setToDoItems(List<ToDoItem> toDoItems) {
+//        this.toDoItems = toDoItems;
+//    }
 
     public void loadToDoItems() throws IOException {
 //used in combination with the setAll in controller
