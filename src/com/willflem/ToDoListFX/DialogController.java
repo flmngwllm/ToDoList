@@ -18,12 +18,15 @@ public class DialogController {
     private DatePicker deadlinePicker;
 
 //gather users input create to do item then add it to the to do item instance
-public void processResults(){
+public ToDoItem processResults(){
     String shortDescription = shortDescriptionField.getText().trim();
     String details = detailsAreaField.getText().trim();
     LocalDate deadlineValue = deadlinePicker.getValue();
 
-    ToDoData.getInstance().addToDoItem(new ToDoItem(shortDescription, details, deadlineValue));
+    ToDoItem newItem = new ToDoItem(shortDescription, details, deadlineValue);
+    ToDoData.getInstance().addToDoItem(newItem);
+    // returning the item that was created
+    return newItem;
 }
 
 }

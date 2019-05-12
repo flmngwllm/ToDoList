@@ -6,15 +6,11 @@ import javafx.beans.value.ChangeListener;
 import javafx.beans.value.ObservableValue;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
-import javafx.scene.Parent;
 import javafx.scene.control.*;
 import javafx.scene.layout.BorderPane;
 
 import java.io.IOException;
-import java.time.LocalDate;
-import java.time.Month;
 import java.time.format.DateTimeFormatter;
-import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 
@@ -79,7 +75,11 @@ public class Controller {
 
         if(result.isPresent() && result.get() == ButtonType.OK){
             DialogController controller = fxmlLoader.getController();
-            controller.processResults();
+            // storing the value that was return from the process results method
+            ToDoItem newItem = controller.processResults();
+            // grabs the list of to do items and saves them on the left borderpane
+            toDoListView.getItems().setAll(ToDoData.getInstance().getToDoItems());
+            toDoListView.getSelectionModel().select(newItem);
             System.out.println("Ok pressed");
 
         } else {
