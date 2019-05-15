@@ -8,9 +8,11 @@ import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.control.*;
 import javafx.scene.layout.BorderPane;
+import javafx.scene.paint.Color;
 import javafx.util.Callback;
 
 import java.io.IOException;
+import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
 import java.util.List;
 import java.util.Optional;
@@ -49,6 +51,7 @@ public class Controller {
         //selects the first item
         toDoListView.getSelectionModel().selectFirst();
 
+        //cell factory
         toDoListView.setCellFactory(new Callback<ListView<ToDoItem>, ListCell<ToDoItem>>() {
             @Override
             public ListCell<ToDoItem> call(ListView<ToDoItem> toDoItemListView) {
@@ -56,9 +59,17 @@ public class Controller {
                     @Override
                     protected void updateItem(ToDoItem item, boolean b) {
                         super.updateItem(item, b);
+                        if(b) {
+                            setText(null);
+                        } else {
+                            setText(item.getShortDescription());
+                            if(item.getDeadline().equals(LocalDate.now())){
+                               setTextFill(Color.RED);
+                            }
+                        }
                     }
                 };
-                
+
                 return cell;
             }
         });
