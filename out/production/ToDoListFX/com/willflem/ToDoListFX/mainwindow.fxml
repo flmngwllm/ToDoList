@@ -32,7 +32,7 @@
                             </ImageView>
                         </graphic>
                 </Button>
-                <ToggleButton fx:id="filerToggleButton" text="Today's Items" onAction="#handleFilterButton">
+                <ToggleButton fx:id="filterToggleButton" text="Today's Items" onAction="#handleFilterButton">
                     <tooltip>
                         <Tooltip text="Button Down: Show Today's items only. Button Up: Show all items"/>
                     </tooltip>
