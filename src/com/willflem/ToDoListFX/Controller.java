@@ -91,7 +91,16 @@ listContextMenu.getItems().addAll(deleteMenuItem);
                         }
                     }
                 };
-
+                // listener for when the cell is empty
+                cell.emptyProperty().addListener(
+                        (obs, wasEmpty, isNowEmpty) -> {
+                            if(isNowEmpty) {
+                                cell.setContextMenu(null);
+                            }else {
+                                cell.setContextMenu(listContextMenu);
+                            }
+                        }
+                );
                 return cell;
             }
         });
