@@ -4,6 +4,7 @@ import com.willflem.ToDoListFX.datamodel.ToDoData;
 import com.willflem.ToDoListFX.datamodel.ToDoItem;
 import javafx.beans.value.ChangeListener;
 import javafx.beans.value.ObservableValue;
+import javafx.collections.transformation.FilteredList;
 import javafx.collections.transformation.SortedList;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
@@ -22,6 +23,7 @@ import java.time.format.DateTimeFormatter;
 import java.util.Comparator;
 import java.util.List;
 import java.util.Optional;
+import java.util.function.Predicate;
 
 public class Controller {
 
@@ -40,6 +42,8 @@ public class Controller {
     private ContextMenu listContextMenu;
     @FXML
     private ToggleButton filterToggleButton;
+
+    private FilteredList<ToDoItem> filteredList;
 
 
     public void initialize() {
@@ -70,14 +74,27 @@ listContextMenu.getItems().addAll(deleteMenuItem);
             }
         });
 
+
+        //provide items we want to filter and call the test method for every item in the list that has been passed to it
+        filteredList = new FilteredList<ToDoItem>(ToDoData.getInstance().getToDoItems(),
+                new Predicate<ToDoItem>() {
+                    @Override
+                    public boolean test(ToDoItem item) {
+                        return true;
+                    }
+                });
+
         // sorting items by deadline
-        SortedList<ToDoItem> sortedList = new SortedList<ToDoItem>(ToDoData.getInstance().getToDoItems(),
+        SortedList<ToDoItem> sortedList = new SortedList<ToDoItem>(filteredList,
                 new Comparator<ToDoItem>() {
                     @Override
                     public int compare(ToDoItem o1, ToDoItem o2) {
                         return o1.getDeadline().compareTo(o2.getDeadline());
                     }
                 });
+
+
+
 
         //bind the listview with the items in the sortedlist
 //        toDoListView.setItems(ToDoData.getInstance().getToDoItems());
@@ -199,12 +216,12 @@ listContextMenu.getItems().addAll(deleteMenuItem);
         }
     }
 
-    //
+    //filter which items display and which items are hidden
     public void handleFilterButton(){
         if(filterToggleButton.isSelected()){
 
         } else{
-            
+
         }
     }
 }
