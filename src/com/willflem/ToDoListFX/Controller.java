@@ -38,6 +38,8 @@ public class Controller {
 
     @FXML
     private ContextMenu listContextMenu;
+    @FXML
+    private ToggleButton filterToggleButton;
 
 
     public void initialize() {
@@ -194,6 +196,15 @@ listContextMenu.getItems().addAll(deleteMenuItem);
 
         if(result.isPresent() && (result.get() == ButtonType.OK)) {
             ToDoData.getInstance().deleteToDoItem(item);
+        }
+    }
+
+    //
+    public void handleFilterButton(){
+        if(filterToggleButton.isSelected()){
+
+        } else{
+            
         }
     }
 }
