@@ -149,6 +149,17 @@ listContextMenu.getItems().addAll(deleteMenuItem);
     }
 
     public void deleteItem(ToDoItem item){
+        //creating a confirmation dialog
+        Alert alert = new Alert(Alert.AlertType.CONFIRMATION);
+        //set properties to see what the dialog will display
+        alert.setTitle("Delete Todo Item");
+        alert.setHeaderText("Delete item" + item.getShortDescription());
+        alert.setContentText("Are you sure? Press OK to continue, or cancel to back out.");
+        //Show the dialog
+        Optional<ButtonType> result = alert.showAndWait();
 
+        if(result.isPresent() && (result.get() == ButtonType.OK)) {
+            ToDoData.getInstance().deleteToDoItem(item);
+        }
     }
 }
