@@ -4,6 +4,8 @@ import com.willflem.ToDoListFX.datamodel.ToDoData;
 import com.willflem.ToDoListFX.datamodel.ToDoItem;
 import javafx.beans.value.ChangeListener;
 import javafx.beans.value.ObservableValue;
+import javafx.event.ActionEvent;
+import javafx.event.EventHandler;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.control.*;
@@ -30,7 +32,25 @@ public class Controller {
     @FXML
     private BorderPane mainBorderPane;
 
+    @FXML
+    private ContextMenu listContextMenu;
+
+
     public void initialize() {
+
+        listContextMenu = new ContextMenu();
+        MenuItem deleteMenuItem = new MenuItem("Delete");
+        //add the event handler when button is clicked pressed
+        deleteMenuItem.setOnAction(new EventHandler<ActionEvent>() {
+            @Override
+            public void handle(ActionEvent actionEvent) {
+                // getting the item that is currently selected in the list
+                ToDoItem item = toDoListView.getSelectionModel().getSelectedItem();
+                deleteItem(item);
+            }
+        });
+
+listContextMenu.getItems().addAll(deleteMenuItem);
         toDoListView.getSelectionModel().selectedItemProperty().addListener(new ChangeListener<ToDoItem>() {
             @Override
             public void changed(ObservableValue<? extends ToDoItem> observable, ToDoItem oldValue, ToDoItem newValue) {
@@ -63,8 +83,10 @@ public class Controller {
                             setText(null);
                         } else {
                             setText(item.getShortDescription());
-                            if(item.getDeadline().equals(LocalDate.now())){
+                            if(item.getDeadline().isBefore(LocalDate.now().plusDays(1))){
                                setTextFill(Color.RED);
+                            } else if(item.getDeadline().equals(LocalDate.now().plusDays(1))){
+                                setTextFill(Color.BLUE);
                             }
                         }
                     }
@@ -124,5 +146,9 @@ public class Controller {
 //        //gets the deadline string
 //        sb.append(item.getDeadline().toString());
 //        itemDetailsTextArea.setText(sb.toString());
+    }
+
+    public void deleteItem(ToDoItem item){
+
     }
 }
