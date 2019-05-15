@@ -8,6 +8,7 @@ import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.control.*;
 import javafx.scene.layout.BorderPane;
+import javafx.util.Callback;
 
 import java.io.IOException;
 import java.time.format.DateTimeFormatter;
@@ -41,12 +42,26 @@ public class Controller {
             }
         });
 
-        //populate the listview with the items created
-        toDoListView.getItems().setAll(ToDoData.getInstance().getToDoItems());
+        //bind the listview with the items created
+        toDoListView.setItems(ToDoData.getInstance().getToDoItems());
         //select one item at a time
         toDoListView.getSelectionModel().setSelectionMode(SelectionMode.SINGLE);
         //selects the first item
         toDoListView.getSelectionModel().selectFirst();
+
+        toDoListView.setCellFactory(new Callback<ListView<ToDoItem>, ListCell<ToDoItem>>() {
+            @Override
+            public ListCell<ToDoItem> call(ListView<ToDoItem> toDoItemListView) {
+                ListCell<ToDoItem> cell = new ListCell<ToDoItem>(){
+                    @Override
+                    protected void updateItem(ToDoItem item, boolean b) {
+                        super.updateItem(item, b);
+                    }
+                };
+                
+                return cell;
+            }
+        });
 
     }
 
@@ -80,12 +95,8 @@ public class Controller {
             // storing the value that was return from the process results method
             ToDoItem newItem = controller.processResults();
             // grabs the list of to do items and saves them on the left borderpane
-            toDoListView.getItems().setAll(ToDoData.getInstance().getToDoItems());
             toDoListView.getSelectionModel().select(newItem);
-            System.out.println("Ok pressed");
 
-        } else {
-            System.out.println("Cancel pressed");
         }
     }
 
