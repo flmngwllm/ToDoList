@@ -2,8 +2,6 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="cdb932d9-7e58-4d94-93a9-e7b232ef17da" name="Default" comment="">
-      <change beforePath="$PROJECT_DIR$/TodoListItems.txt" beforeDir="false" afterPath="$PROJECT_DIR$/TodoListItems.txt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/com/willflem/ToDoListFX/Controller.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/com/willflem/ToDoListFX/Controller.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/com/willflem/ToDoListFX/mainwindow.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/src/com/willflem/ToDoListFX/mainwindow.fxml" afterDir="false" />
     </list>
     <ignored path="JavaFxApplication.iws" />
@@ -118,8 +116,8 @@
         <entry file="file://$PROJECT_DIR$/src/com/willflem/ToDoListFX/mainwindow.fxml">
           <provider editor-type-id="JavaFX-Scene-Builder" />
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="226">
-              <caret line="34" column="16" selection-start-line="34" selection-start-column="16" selection-end-line="34" selection-end-column="16" />
+            <state relative-caret-position="256">
+              <caret line="34" column="48" selection-start-line="34" selection-start-column="48" selection-end-line="34" selection-end-column="48" />
             </state>
           </provider>
         </entry>
@@ -217,7 +215,7 @@
     <property name="MemberChooser.sorted" value="false" />
     <property name="OverrideImplement.combined" value="false" />
     <property name="WebServerToolWindowFactoryState" value="false" />
-    <property name="com.android.tools.idea.instantapp.provision.ProvisionBeforeRunTaskProvider.myTimeStamp" value="1557954027418" />
+    <property name="com.android.tools.idea.instantapp.provision.ProvisionBeforeRunTaskProvider.myTimeStamp" value="1557954688430" />
     <property name="dynamic.classpath" value="false" />
     <property name="project.structure.last.edited" value="Global Libraries" />
     <property name="project.structure.proportion" value="0.0" />
@@ -466,8 +464,8 @@
     <entry file="file://$PROJECT_DIR$/src/com/willflem/ToDoListFX/mainwindow.fxml">
       <provider editor-type-id="JavaFX-Scene-Builder" />
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="226">
-          <caret line="34" column="16" selection-start-line="34" selection-start-column="16" selection-end-line="34" selection-end-column="16" />
+        <state relative-caret-position="256">
+          <caret line="34" column="48" selection-start-line="34" selection-start-column="48" selection-end-line="34" selection-end-column="48" />
         </state>
       </provider>
     </entry>

@@ -32,7 +32,7 @@
         </VBox>
         <ToolBar>
             <HBox>
-                
+                <Button text="New..." onAction="#showNewItemDialog"/>
             </HBox>
         </ToolBar>
     </top>
