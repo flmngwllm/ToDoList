@@ -4,6 +4,7 @@ import com.willflem.ToDoListFX.datamodel.ToDoData;
 import com.willflem.ToDoListFX.datamodel.ToDoItem;
 import javafx.beans.value.ChangeListener;
 import javafx.beans.value.ObservableValue;
+import javafx.collections.transformation.SortedList;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 import javafx.fxml.FXML;
@@ -18,6 +19,7 @@ import javafx.util.Callback;
 import java.io.IOException;
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
+import java.util.Comparator;
 import java.util.List;
 import java.util.Optional;
 
@@ -66,8 +68,18 @@ listContextMenu.getItems().addAll(deleteMenuItem);
             }
         });
 
-        //bind the listview with the items created
-        toDoListView.setItems(ToDoData.getInstance().getToDoItems());
+        // sorting items by deadline
+        SortedList<ToDoItem> sortedList = new SortedList<ToDoItem>(ToDoData.getInstance().getToDoItems(),
+                new Comparator<ToDoItem>() {
+                    @Override
+                    public int compare(ToDoItem o1, ToDoItem o2) {
+                        return o1.getDeadline().compareTo(o2.getDeadline());
+                    }
+                });
+
+        //bind the listview with the items in the sortedlist
+//        toDoListView.setItems(ToDoData.getInstance().getToDoItems());
+        toDoListView.setItems(sortedList);
         //select one item at a time
         toDoListView.getSelectionModel().setSelectionMode(SelectionMode.SINGLE);
         //selects the first item
